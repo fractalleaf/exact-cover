@@ -167,6 +167,7 @@ class DLX:
             yield o
             return
 
+        # choose the smallest column
         size = 10**9
         for column in self.h.right_sweep():
             if column.size < size:
