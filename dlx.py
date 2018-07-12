@@ -205,6 +205,23 @@ class DLX:
             labels = sorted(labels, key=key, reverse=reverse)
         return labels
 
+    def generate_solutions(self, **kw):
+        """Wrapper for search method
+
+        Runs search iterator and gets the labels for the rows that are pat of
+        the solution. Then yields the solution
+
+        Args:
+            **kw: Keyword arguments for get_row_labels.
+
+        Yields:
+            Solution found by the algorithm
+        """
+        self.kcount = [0]
+
+        for solution in self.search():
+            yield [self.get_row_labels(s, **kw) for s in solution]
+
     def run_search(self, **kw):
         """Wrapper for search method.
 
